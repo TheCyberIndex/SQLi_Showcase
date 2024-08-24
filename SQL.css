@@ -1,0 +1,142 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4; /* Light background for a professional feel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    height: auto;
+}
+
+/* Container for the Login Box */
+.login-container {
+    background-color: #ffffff; /* White background for the login box */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+/* Login Box Title */
+.login-box h2 {
+    margin: 0;
+    margin-bottom: 20px;
+    color: #333333;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Labels for Inputs */
+.login-box label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555555;
+    font-size: 14px;
+}
+
+/* Styling Inputs */
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Login Button */
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+    background-color: #0056b3;
+}
+
+/* Link to Show SQL Injection Examples */
+#toggleExamples {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#toggleExamples:hover {
+    text-decoration: underline;
+}
+
+/* Ensure text in pre tags wraps properly */
+pre {
+    white-space: pre-wrap; /* Allow the text to wrap */
+    word-wrap: break-word; /* Break long words if needed */
+    text-align: center; /* Center-align the text */
+    margin: 0 auto; /* Center the block itself */
+    padding: 10px; /* Add padding to give it some space */
+    background-color: #f9f9f9; /* Optional: background for better visibility */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+/* Ensure the container also respects the width */
+#sqlExamples {
+    width: 100%; /* Full width of the parent container */
+    max-width: 600px; /* Optional: restrict the maximum width */
+    margin: 0 auto; /* Center the container itself */
+    text-align: center;
+}
+
+
+/* Modal Styling */
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333333;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+.notice {
+    margin-top: 20px; /* Adjust this value to increase the gap */
+    list-style-type: none; /* Remove bullet point */
+    color: #ff0000; /* Optional: Make the notice red or another color */
+    font-weight: bold; /* Optional: Make the text bold */
+}
